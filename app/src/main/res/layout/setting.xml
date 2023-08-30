@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ghasemi.abbas.applockwatcher.components.TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingRight="15dp"
+                android:text="امنیت"
+                android:textSize="16sp"
+                app:bold="true"
+                app:color="@color/colorAccent" />
+
+            <ghasemi.abbas.applockwatcher.components.TextView
+                android:id="@+id/forgetPass"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="?selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:textSize="14sp"
+                android:gravity="right|center"
+                android:paddingRight="15dp"
+                android:text="فراموشی گذرواژه"
+                app:color="#000" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/colorDivider" />
+
+            <ghasemi.abbas.applockwatcher.components.TextView
+                android:id="@+id/changePass"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="?selectableItemBackground"
+                android:clickable="true"
+                android:textSize="14sp"
+                android:focusable="true"
+                android:gravity="right|center"
+                android:paddingRight="15dp"
+                android:text="تغییر گذرواژه"
+                app:color="#000" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="12dp"
+                android:background="@color/colorDivider" />
+
+            <ghasemi.abbas.applockwatcher.components.TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingRight="15dp"
+                android:text="پیشرفته"
+                android:textSize="16sp"
+                app:bold="true"
+                app:color="@color/colorAccent" />
+
+            <LinearLayout
+                android:id="@+id/changeIcon"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="?selectableItemBackground">
+
+                <ghasemi.abbas.applockwatcher.components.Switch
+                    android:id="@+id/changeIconSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="10dp"
+                    android:src="@mipmap/ic_calculator" />
+
+                <ghasemi.abbas.applockwatcher.components.TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="⇆"
+                    app:color="#202020"
+                    android:textSize="20dp" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="10dp"
+                    android:src="@mipmap/ic_launcher" />
+
+                <ghasemi.abbas.applockwatcher.components.TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="15dp"
+                    android:textSize="14sp"
+                    android:text="پنهان سازی آیکن"
+                    app:color="#000" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/colorDivider" />
+
+            <ghasemi.abbas.applockwatcher.components.TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="5dp"
+                android:textSize="14sp"
+                android:gravity="right|center"
+                android:text="قفل شدن مجدد برنامه های بازشده هنگام:"
+                app:color="#000" />
+
+            <LinearLayout
+                android:id="@+id/off"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?selectableItemBackground"
+                android:orientation="horizontal">
+
+                <ghasemi.abbas.applockwatcher.components.TextView
+                    android:layout_width="0dp"
+                    android:layout_height="55dp"
+                    android:layout_marginRight="15dp"
+                    android:textSize="14sp"
+                    android:layout_weight="1"
+                    android:gravity="right|center"
+                    android:text="خاموش/روشن شدن مجدد صفحه نمایش"
+                    app:color="#000" />
+
+                <RadioButton
+                    android:id="@+id/Off"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:gravity="left|center" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="50dp"
+                android:background="@color/colorDivider" />
+
+            <LinearLayout
+                android:id="@+id/exit_app"
+                android:textSize="14sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="?selectableItemBackground"
+                android:orientation="horizontal">
+
+                <ghasemi.abbas.applockwatcher.components.TextView
+                    android:layout_width="0dp"
+                    android:layout_height="55dp"
+                    android:textSize="14sp"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1"
+                    android:gravity="right|center"
+                    android:text="خروج از آنها"
+                    app:color="#000" />
+
+                <RadioButton
+                    android:id="@+id/exitApp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:checked="true"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:gravity="left|center" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/colorDivider" />
+
+            <LinearLayout
+                android:id="@+id/History"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ghasemi.abbas.applockwatcher.components.Switch
+                    android:id="@+id/history"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/colorDivider" />
+
+                <ghasemi.abbas.applockwatcher.components.TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1"
+                    android:textSize="14sp"
+                    android:gravity="right|center"
+                    android:text="تاریخچه ترددها"
+                    app:color="#000" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/colorDivider" />
+
+            <LinearLayout
+                android:id="@+id/Save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ghasemi.abbas.applockwatcher.components.Switch
+                    android:id="@+id/save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/colorDivider" />
+
+                <ghasemi.abbas.applockwatcher.components.TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginRight="15dp"
+                    android:textSize="14sp"
+                    android:layout_weight="1"
+                    android:gravity="right|center"
+                    android:text="ضبط تصویر"
+                    app:color="#000" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="12dp"
+                android:background="@color/colorDivider" />
+
+            <ghasemi.abbas.applockwatcher.components.TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingRight="15dp"
+                android:text="شخصی سازی"
+                android:textSize="16sp"
+                app:bold="true"
+                app:color="@color/colorAccent" />
+
+            <ghasemi.abbas.applockwatcher.components.TextView
+                android:id="@+id/wallpaper"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="?selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:textSize="14sp"
+                android:gravity="right|center"
+                android:paddingRight="15dp"
+                android:text="پس زمینه قفل برنامه ها"
+                app:color="#000" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/colorDivider" />
+
+            <LinearLayout
+                android:id="@+id/vibrator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?selectableItemBackground"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ghasemi.abbas.applockwatcher.components.Switch
+                    android:id="@+id/vibratorSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:checked="true" />
+
+                <ghasemi.abbas.applockwatcher.components.TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1"
+                    android:gravity="right|center"
+                    android:textSize="14sp"
+                    android:text="لرزش در برنامه"
+                    app:color="#000" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/colorDivider" />
+
+            <LinearLayout
+                android:id="@+id/visible"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?selectableItemBackground"
+                android:focusable="true"
+                android:gravity="center">
+
+                <ghasemi.abbas.applockwatcher.components.Switch
+                    android:id="@+id/visibleSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:checked="true" />
+
+                <ghasemi.abbas.applockwatcher.components.TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1"
+                    android:textSize="14sp"
+                    android:gravity="right|center"
+                    android:text="پنهان سازی حرکت الگو"
+                    app:color="#000" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/colorDivider"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/finger"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?selectableItemBackground"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <ghasemi.abbas.applockwatcher.components.Switch
+                    android:id="@+id/fingerSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:checked="true" />
+
+                <ghasemi.abbas.applockwatcher.components.TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1"
+                    android:textSize="14sp"
+                    android:gravity="right|center"
+                    android:text="باز شدن با اثر انگشت"
+                    app:color="#000" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/colorDivider" />
+
+            <LinearLayout
+                android:id="@+id/delete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?selectableItemBackground"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ghasemi.abbas.applockwatcher.components.Switch
+                    android:id="@+id/deleteSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:checked="true" />
+
+                <ghasemi.abbas.applockwatcher.components.TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:textSize="14sp"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1"
+                    android:gravity="right|center"
+                    android:text="جلوگیری از حذف شدن برنامه"
+                    app:color="#000" />
+
+            </LinearLayout>
+
+            <ghasemi.abbas.applockwatcher.components.TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:background="@color/colorDivider"
+                android:gravity="right|center"
+                android:paddingLeft="15dp"
+                android:paddingTop="5dp"
+                android:textSize="13sp"
+                android:paddingRight="15dp"
+                android:paddingBottom="5dp"
+                android:text="با فعال سازی، قابلیت قفل تلفن با یک کلیک نیز فراهم می گردد، قسمت ویجت ها می توانید آیکن برنامه را به خانه هدایت کنید."
+                app:color="#60788B" />
+
+            <ghasemi.abbas.applockwatcher.components.TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingRight="15dp"
+                android:text="دیگر"
+                android:textSize="16sp"
+                app:bold="true"
+                app:color="@color/colorAccent" />
+
+            <ghasemi.abbas.applockwatcher.components.TextView
+                android:id="@+id/rate"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?selectableItemBackground"
+                android:gravity="right|center"
+                android:paddingRight="15dp"
+                android:textSize="14sp"
+                android:text="امتیاز به برنامه"
+                app:color="#000" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/colorDivider" />
+
+            <ghasemi.abbas.applockwatcher.components.TextView
+                android:id="@+id/otherAppa"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:textSize="14sp"
+                android:foreground="?selectableItemBackground"
+                android:gravity="right|center"
+                android:paddingRight="15dp"
+                android:text="سایر اپلیکیشن های ما"
+                app:color="#000" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

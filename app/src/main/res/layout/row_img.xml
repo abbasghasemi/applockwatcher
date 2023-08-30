@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:foreground="?selectableItemBackgroundBorderless"
+        app:cardBackgroundColor="@color/colorCardBackground"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="3dp">
+
+        <ghasemi.abbas.applockwatcher.components.AutoHeightFramlayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="7dp"
+                android:background="@drawable/back_foucault_date"
+                android:paddingHorizontal="7dp"
+                android:paddingVertical="5dp">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/icon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="7dp"
+                    app:shapeAppearance="@style/ShapeableImageView" />
+
+                <ghasemi.abbas.applockwatcher.components.TextView
+                    android:id="@+id/date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="1dp"
+                    android:text="date"
+                    android:textSize="11sp"
+                    app:color="#FFFFFF" />
+            </LinearLayout>
+        </ghasemi.abbas.applockwatcher.components.AutoHeightFramlayout>
+    </androidx.cardview.widget.CardView>
+</FrameLayout>

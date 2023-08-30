@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TextView">
+        <attr name="bold" format="boolean" />
+        <attr name="color" format="color"/>
+    </declare-styleable>
+
+    <dimen name="height_top">70dp</dimen>
+    <dimen name="height_icon">100dp</dimen>
+    <dimen name="height_enter_password">280dp</dimen>
+
+</resources>

@@ -1,0 +1,59 @@
+apply plugin: 'com.android.application'
+
+android {
+
+    compileSdkVersion 34
+    buildToolsVersion '33.0.0'
+
+    defaultConfig {
+        applicationId "ghasemi.abbas.applockwatcher"
+        minSdkVersion 21
+        targetSdkVersion 34
+        versionCode 52
+        versionName "5.2"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        buildTypes.each {
+            it.buildConfigField 'int', 'KEY_MARKET', '1'
+            it.buildConfigField 'String', 'FLAVOR', '"cafebazaar"'
+//            it.buildConfigField 'int', 'KEY_MARKET', '2'
+//            it.buildConfigField 'String', 'FLAVOR', '"myket"'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+repositories {
+    maven {
+        url 'https://jitpack.io'
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    implementation 'androidx.biometric:biometric:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation "com.github.farasource:material-button:1.1.1"
+    implementation "com.github.farasource:waiting-bar:0.1-beta01"
+    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'androidx.recyclerview:recyclerview:1.3.1'
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.9'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+}

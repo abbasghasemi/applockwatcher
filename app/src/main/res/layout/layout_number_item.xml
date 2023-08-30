@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:orientation="vertical">
+
+    <com.farasource.component.button.MaterialButton
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:minHeight="64dp"
+        app:cornerRadius="32dp"
+        android:textSize="14sp"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:maxLines="1"
+        app:scale="0.8"
+        app:useScale="true"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackgroundBorderless"/>
+
+</LinearLayout>

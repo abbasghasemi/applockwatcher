@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="height_top">60dp</dimen>
+    <dimen name="height_icon">90dp</dimen>
+    <dimen name="height_enter_password">240dp</dimen>
+</resources>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back_bottom_sheet">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ghasemi.abbas.applockwatcher.components.TextView
+            android:id="@+id/help"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:textSize="16sp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="فراموشی گذرواژه"
+            app:bold="true"
+            app:color="#404040" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp"
+            android:background="@color/colorDivider" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/LockApp.TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp">
+
+            <ghasemi.abbas.applockwatcher.components.EditText
+                android:id="@+id/question"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:hint="طرح سوال:"
+                android:singleLine="true" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/LockApp.TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp">
+
+            <ghasemi.abbas.applockwatcher.components.EditText
+                android:id="@+id/answer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="پاسخ پرسش:"
+                android:maxLines="2"
+                android:padding="15dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ghasemi.abbas.applockwatcher.components.TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingTop="5dp"
+            android:paddingRight="20dp"
+            android:textSize="13sp"
+            android:paddingBottom="10dp"
+            android:text="پس از تکمیل در صفحه ورود قسمت فراموشی رمز ایجاد می گردد و هنگام استفاده پاسخ شما باید دقیقا با پاسخ فعلی یکسان باشد." />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
+
+            <com.farasource.component.button.MaterialButton
+                android:id="@+id/close"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="0.75"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="بستن"
+                android:textColor="@color/colorAccent"
+                app:backgroundTint="#fff"
+                app:rippleColor="#332FDF84"
+                app:strokeColor="@color/colorAccent"
+                app:strokeWidth="1dp" />
+
+            <com.farasource.component.button.MaterialButton
+                android:id="@+id/save"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:text="ذخیره" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

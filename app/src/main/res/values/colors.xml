@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#28B66D</color>
+    <color name="colorPrimaryDark">#2FA268</color>
+    <color name="colorAccent">#2FDF84</color>
+    <color name="colorEdgeEffect">#ffffff</color>
+    <color name="colorBackground">#fff</color>
+    <color name="colorCardBackground">#BFECEFF1</color>
+    <color name="colorDivider">#ECEFF1</color>
+
+    <color name="white">#FFFF</color>
+    <color name="pomegranate">#f4511e</color>
+</resources>

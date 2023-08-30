@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="3dp"
+    android:layout_margin="7dp"
+    android:background="@drawable/back_on"
+    android:orientation="vertical">
+
+    <ghasemi.abbas.applockwatcher.components.TextView
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_marginRight="20dp"
+        android:gravity="right|center"
+        android:text="انتخاب نوع قفل:"
+        android:textSize="16dp"
+        app:bold="true"
+        app:color="#000" />
+
+    <ghasemi.abbas.applockwatcher.components.TextView
+        android:id="@+id/pattern"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="?selectableItemBackground"
+        android:gravity="right|center"
+        android:textSize="14sp"
+        android:paddingRight="25dp"
+        android:text="الگو"
+        android:textColor="#000" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:background="@color/colorDivider" />
+
+    <ghasemi.abbas.applockwatcher.components.TextView
+        android:id="@+id/pin"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="?selectableItemBackground"
+        android:gravity="right|center"
+        android:paddingRight="25dp"
+        android:text="پین"
+        android:textColor="#000"
+        android:textSize="14sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:background="@color/colorDivider" />
+
+    <ghasemi.abbas.applockwatcher.components.TextView
+        android:id="@+id/custom"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="?selectableItemBackground"
+        android:gravity="right|center"
+        android:paddingRight="25dp"
+        android:text="سفارشی"
+        android:textColor="#000"
+        android:textSize="14sp" />
+</LinearLayout>

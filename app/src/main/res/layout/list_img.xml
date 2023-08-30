@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="7dp"
+        app:cardCornerRadius="15dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:minWidth="180dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="54dp"
+                android:paddingHorizontal="15dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/icon"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="10dp" />
+
+                <ghasemi.abbas.applockwatcher.components.TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="name"
+                    android:textSize="13dp"
+                    app:bold="true"
+                    app:color="#000000" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="15dp"
+                android:background="@color/colorDivider" />
+
+            <ghasemi.abbas.applockwatcher.components.TextView
+                android:id="@+id/text1"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:background="?selectableItemBackground"
+                android:gravity="center|right"
+                android:paddingRight="15dp"
+                android:textSize="14sp"
+                android:text="بزرگ نمائی" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="15dp"
+                android:background="@color/colorDivider" />
+
+            <ghasemi.abbas.applockwatcher.components.TextView
+                android:id="@+id/text2"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:background="?selectableItemBackground"
+                android:gravity="center|right"
+                android:paddingRight="15dp"
+                android:textSize="14sp"
+                android:text="حذف کردن"
+                app:color="#F44336" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>

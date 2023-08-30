@@ -1,0 +1,85 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="AppTheme" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:colorAccent">@color/colorAccent</item>
+        <item name="android:colorEdgeEffect">@color/colorEdgeEffect</item>
+        <item name="android:soundEffectsEnabled">false</item>
+        <item name="android:colorControlHighlight">#1A000000</item>
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+        <item name="android:navigationBarColor">@color/white</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
+        <item name="android:dialogTheme">@style/dialogTheme</item>
+        <item name="colorPrimaryContainer">@color/colorAccent</item>
+    </style>
+
+    <style name="Theme.Translucent" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/back_on</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- Note that we use the base animation style here (that is no
+             animations) because we really have no idea how this kind of
+             activity will be used. -->
+        <item name="android:windowAnimationStyle">@style/Animation_Translucent</item>
+    </style>
+
+    <style name="dialogTheme" parent="Theme.Material3.Light.Dialog">
+        <item name="android:colorPrimary">@color/colorPrimary</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">@style/dialogAnimation</item>
+    </style>
+
+    <style name="dialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/in</item>
+        <item name="android:windowExitAnimation">@anim/out</item>
+    </style>
+
+    <style name="Animation_Translucent">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@anim/out2</item>
+    </style>
+
+    <style name="editTextStyle">
+        <item name="colorPrimary">@color/colorAccent</item>
+    </style>
+
+    <style name="LockApp.TextInputLayout" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/colorAccent</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxCornerRadiusTopEnd">15dp</item>
+        <item name="theme">@style/editTextStyle</item>
+        <item name="boxCornerRadiusTopStart">15dp</item>
+        <item name="boxCornerRadiusBottomEnd">15dp</item>
+        <item name="boxCornerRadiusBottomStart">15dp</item>
+    </style>
+
+    <style name="ShapeableImageView">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <declare-styleable name="PatternLockView">
+        <attr name="dotCount" format="integer"/>
+        <attr name="dotNormalSize" format="dimension"/>
+        <attr name="dotSelectedSize" format="dimension"/>
+        <attr name="pathWidth" format="dimension"/>
+        <attr name="aspectRatioEnabled" format="boolean"/>
+        <attr name="aspectRatio" format="enum">
+            <enum name="square" value="0"/>
+            <enum name="width_bias" value="1"/>
+            <enum name="height_bias" value="2"/>
+        </attr>
+        <attr name="normalStateColor" format="color"/>
+        <attr name="correctStateColor" format="color"/>
+        <attr name="wrongStateColor" format="color"/>
+        <attr name="dotAnimationDuration" format="integer"/>
+        <attr name="pathEndAnimationDuration" format="integer"/>
+    </declare-styleable>
+
+    <style name="BottomSheetDialogTheme" parent="@style/Theme.Material3.Light.BottomSheetDialog">
+        <item name="android:windowBackground">#33000000</item>
+        <item name="android:navigationBarColor">@color/white</item>
+    </style>
+</resources>

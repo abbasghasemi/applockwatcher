@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/back_on"
+    android:elevation="3dp"
+    android:layout_margin="7dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:background="@drawable/back_top"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/logo"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ic_round_app_registration_24"
+            app:tint="#fff" />
+
+        <ghasemi.abbas.applockwatcher.components.TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:text="accessibility مجوز"
+            android:textSize="20dp"
+            app:bold="true"
+            app:color="#fff" />
+    </LinearLayout>
+
+    <ghasemi.abbas.applockwatcher.components.TextView
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:text="قفل برنامه ها برای اجرا و کنترل اپلیکیشن های قفل شده نیاز به دسترسی 'accessibility service' دارد.\n پس از فشردن دکمه ی صدور مجوز به بخش نصب خدمات مراجعه و سرویس AppLock را فعال نمایید." />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:orientation="horizontal">
+
+
+        <com.farasource.component.button.MaterialButton
+            android:id="@+id/close"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="0.75"
+            android:text="بعدا"
+            android:textColor="@color/colorAccent"
+            app:backgroundTint="#fff"
+            app:rippleColor="#3328B66D"
+            app:strokeColor="@color/colorAccent"
+            app:strokeWidth="1.5dp" />
+
+        <com.farasource.component.button.MaterialButton
+            android:id="@+id/settings"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:text="صدور مجوز" />
+    </LinearLayout>
+</LinearLayout>

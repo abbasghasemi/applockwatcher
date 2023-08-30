@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root_frag"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:background="@color/colorBackground"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/actionBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            android:elevation="3dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/more"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:background="?selectableItemBackgroundBorderless"
+                android:onClick="back"
+                android:scaleType="centerInside"
+                android:visibility="gone" />
+
+            <ghasemi.abbas.applockwatcher.components.TextView
+                android:id="@+id/title"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:gravity="right|center"
+                android:text="خانه"
+                android:textSize="18dp"
+                app:bold="true"
+                app:color="#fff" />
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:background="?selectableItemBackgroundBorderless"
+                android:onClick="back"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_back" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

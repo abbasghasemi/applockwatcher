@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ghasemi.abbas.applockwatcher.components.TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="بعد از حذف و نصب مجدد اپلیکیشن اطلاعات قفل شده را چگونه بازگردانی کنیم؟"
+                app:bold="true"
+                app:color="@color/colorPrimary" />
+
+            <ghasemi.abbas.applockwatcher.components.TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:text="لطفا در صفحه خانه، دکمه قفل فایل را فشرده و نگه دارید."
+                app:color="#404040" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="1dp"
+                android:background="@color/colorDivider" />
+
+            <ghasemi.abbas.applockwatcher.components.TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="دسترسی accessibility فعال است اما مجددا فعال سازی آن درخواست می شود"
+                app:bold="true"
+                app:color="@color/colorPrimary" />
+
+            <ghasemi.abbas.applockwatcher.components.TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:text="لطفا یکبار دسترسی را غیر فعال کنید، پس از آن برنامه را باز کرده و صدور مجوز را تایید و مجددا دسترسی را برای برنامه فعال نمایید."
+                app:color="#404040" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="1dp"
+                android:background="@color/colorDivider" />
+
+            <ghasemi.abbas.applockwatcher.components.TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="قفل برنامه در دستگاه من کار نمی کند"
+                app:bold="true"
+                app:color="@color/colorPrimary" />
+
+            <ghasemi.abbas.applockwatcher.components.TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:text="برنامه های بهینه سازی باتری اجازه کارکرد صحیح را به برنامه نمی دهند، بنابراین نیاز است دسترسی 'راه اندازی خودکار' را فعال و حالت 'بدون محدودیت' را برای محدودیت مصرف باتری انتخاب کنید، این مشکل معمولا بر روی تلفن های هواوی یا شیائومی به خاطر غیرفعال کردن برنامه در پسزمینه ایجاد می شود."
+                app:color="#404040" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="1dp"
+                android:background="@color/colorDivider" />
+
+            <ghasemi.abbas.applockwatcher.components.TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="با شماره گیری کد برنامه باز نمی شود؟"
+                android:visibility="gone"
+                app:bold="true"
+                app:color="@color/colorPrimary" />
+
+            <ghasemi.abbas.applockwatcher.components.TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:text="اگر دسترسی برنامه به تلفن را غیرفعال کرده باشید،برنامه فعال نمی شود،لذا مطمئن شوید دسترسی لازم را داده باشید،این دسترسی درصورتی که غیرفعال نکرده باشید فعال است،همچنین این قابلیت بر روی برخی تلفن ها قابل اجرا نیست."
+                android:visibility="gone"
+                app:color="#404040" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="1dp"
+                android:background="@color/colorDivider"
+                android:visibility="gone" />
+
+            <ghasemi.abbas.applockwatcher.components.TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="اگر برنامه را مخفی کنم و به هرنحوی نتوانم وارد برنامه شوم،چکار کنم؟"
+                android:visibility="gone"
+                app:bold="true"
+                app:color="@color/colorPrimary" />
+
+            <ghasemi.abbas.applockwatcher.components.TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:text="در این صورت باید از تنطیمات تلفن به بخش برنامه ها رفته و قفل برنامه را لفو نصب و مجددا نصب نمائید."
+                android:visibility="gone"
+                app:color="#404040" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="1dp"
+                android:background="@color/colorDivider"
+                android:visibility="gone" />
+
+            <ghasemi.abbas.applockwatcher.components.TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="برنامه روی تلفن من مشکل دارد"
+                app:bold="true"
+                app:color="@color/colorPrimary" />
+
+            <ghasemi.abbas.applockwatcher.components.TextView
+                android:id="@+id/problem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoLink="email"
+                android:paddingLeft="15dp"
+                android:textIsSelectable="true"
+                android:paddingRight="15dp"
+                android:text="لطفا مشخصات تلفن و مشکل خود را به ایدی تلگرام @farasourceChat ارسال نمائید."
+                app:color="#404040" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="1dp"
+                android:background="@color/colorDivider" />
+
+            <ghasemi.abbas.applockwatcher.components.TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="ارسال نظرات و انتقادات در مورد عملکرد برنامه"
+                app:bold="true"
+                app:color="@color/colorPrimary" />
+
+            <ghasemi.abbas.applockwatcher.components.TextView
+                android:id="@+id/connect"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoLink="email"
+                android:paddingLeft="15dp"
+                android:textIsSelectable="true"
+                android:paddingRight="15dp"
+                android:text="لطفا انتقادات و نظرات خود را به ایدی تلگرام @farasourceChat ارسال نمائید."
+                app:color="#404040" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
