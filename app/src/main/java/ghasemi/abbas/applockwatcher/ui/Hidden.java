@@ -314,17 +314,17 @@ public class Hidden extends BaseActivity implements OnBackPressedFragment {
                                 image.setImageDrawable(pk.applicationInfo.loadIcon(getPackageManager()));
                             }
                             image.setOnClickListener(view -> {
-                                Intent intent = new Intent(Intent.ACTION_VIEW);
-                                intent.setDataAndType(FileProvider.getUriForFile(Hidden.this,getPackageName() + ".fileProvider", new File(originPath)), "application/vnd.android.package-archive");
-                                intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                intent.putExtra(Intent.EXTRA_NOT_UNKNOWN_SOURCE, true);
-                                intent.putExtra(Intent.EXTRA_RETURN_RESULT, false);
-                                intent.putExtra(Intent.EXTRA_INSTALLER_PACKAGE_NAME, getApplicationInfo().packageName);
-                                try {
-                                    startActivity(intent);
-                                } catch (Exception e) {
-                                    //
-                                }
+//                                Intent intent = new Intent(Intent.ACTION_VIEW);
+//                                intent.setDataAndType(FileProvider.getUriForFile(Hidden.this,getPackageName() + ".fileProvider", new File(originPath)), "application/vnd.android.package-archive");
+//                                intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_ACTIVITY_NEW_TASK);
+//                                intent.putExtra(Intent.EXTRA_NOT_UNKNOWN_SOURCE, true);
+//                                intent.putExtra(Intent.EXTRA_RETURN_RESULT, false);
+//                                intent.putExtra(Intent.EXTRA_INSTALLER_PACKAGE_NAME, getApplicationInfo().packageName);
+//                                try {
+//                                    startActivity(intent);
+//                                } catch (Exception e) {
+//                                    //
+//                                }
                             });
                         }
                         break;
