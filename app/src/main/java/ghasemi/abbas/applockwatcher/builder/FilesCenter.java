@@ -28,29 +28,50 @@ public class FilesCenter {
 
     public final static File root = new File(Environment.getExternalStorageDirectory().getAbsolutePath());
 
-    public static void hiddenFile(File file, String type) {
+    public static boolean hiddenFile(File file, String type) {
+        if (file == null || !file.isFile()) return false;
         if (type.equals("file")) {
-            String[] ext = file.getName().split("\\.");
-            if (ext.length > 1) type = FilesCenter.getTypeFile(ext[1]);
+            int extensionStart = file.getName().lastIndexOf('.');
+            if (extensionStart >= 0) type = FilesCenter.getTypeFile(file.getName().substring(extensionStart + 1));
         }
-        if (file.exists()) {
-            File to = new File(file.getParent(), "." + file.getName() + ".lock");
-            file.renameTo(to);
+        File to = createHiddenFile(file);
+        if (to.exists()) return false;
+        try {
+            if (!file.renameTo(to)) return false;
+            if (saveFile(file, type)) return true;
+            to.renameTo(file);
+        } catch (RuntimeException e) {
+            if (to.exists() && !file.exists()) to.renameTo(file);
         }
-        saveFile(file, type);
+        return false;
     }
 
-    private static void saveFile(final File file, final String type) {
+    private static boolean saveFile(final File file, final String type) {
         AppStatus.open().unlockFile(file.getAbsolutePath());
-        AppStatus.open().lookFile(file.getAbsolutePath(), type);
+        return AppStatus.open().lookFile(file.getAbsolutePath(), type);
     }
 
-    public static void showFile(final File file) {
-        File from = new File(file.getParent(), "." + file.getName() + ".lock");
-        if (from.exists()) {
-            from.renameTo(file);
+    public static boolean showFile(final File file) {
+        if (file == null) return false;
+        File from = createHiddenFile(file);
+        if (!from.isFile()) {
+            if (!file.isFile()) return false;
+            try {
+                AppStatus.open().unlockFile(file.getAbsolutePath());
+                return true;
+            } catch (RuntimeException e) {
+                return false;
+            }
         }
-        AppStatus.open().unlockFile(file.getAbsolutePath());
+        if (file.exists()) return false;
+        try {
+            if (!from.renameTo(file)) return false;
+            AppStatus.open().unlockFile(file.getAbsolutePath());
+            return true;
+        } catch (RuntimeException e) {
+            if (file.exists() && !from.exists()) file.renameTo(from);
+            return false;
+        }
     }
 
     public static File createHiddenFile(File file) {
@@ -148,23 +169,31 @@ public class FilesCenter {
         return fileList;
     }
 
-    public static void findFileHidden(File root) {
+    public static boolean findFileHidden(File root) {
+        boolean complete = true;
         File[] listFile = root.listFiles();
+        if (listFile == null) return !root.equals(FilesCenter.root);
         if (listFile != null && listFile.length > 0) {
             for (File file : listFile) {
                 if (file.isDirectory()) {
-                    findFileHidden(file);
+                    if (!findFileHidden(file)) complete = false;
                 } else {
                     String name = file.getName();
-                    if (name.startsWith(".") && name.endsWith(".lock")) {
+                    if (name.startsWith(".") && name.endsWith(".lock") && name.length() > ".lock".length() + 1) {
                         String[] n = name.split("\\.");
                         String type = FilesCenter.getTypeFile(n[n.length - (n.length > 1 ? 2 : 1)]);
-                        saveFile(new File(file.getParent(), file.getName().substring(1).replace(".lock", "")), type);
+                        File original = new File(file.getParent(), name.substring(1, name.length() - ".lock".length()));
+                        try {
+                            if (!saveFile(original, type)) complete = false;
+                        } catch (RuntimeException e) {
+                            complete = false;
+                        }
                     }
                 }
 
             }
         }
+        return complete;
     }
 
     public static int countItemWithFilter(File root, String type) {

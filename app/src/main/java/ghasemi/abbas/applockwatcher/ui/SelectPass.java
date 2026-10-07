@@ -10,11 +10,12 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
-import com.farasource.component.button.MaterialButton;
+import com.google.android.material.button.MaterialButton;
 
 import ghasemi.abbas.applockwatcher.R;
 import ghasemi.abbas.applockwatcher.builder.BuildApp;
 import ghasemi.abbas.applockwatcher.builder.TinyData;
+import ghasemi.abbas.applockwatcher.builder.PasswordStore;
 import ghasemi.abbas.applockwatcher.components.patternlockview.PatternLockView;
 import ghasemi.abbas.applockwatcher.components.patternlockview.listener.PatternLockViewListener;
 import ghasemi.abbas.applockwatcher.components.patternlockview.utils.ResourceUtils;
@@ -79,7 +80,7 @@ public class SelectPass extends BaseActivity {
                     if (lastPass) {
                         if (password.equals(intermediatePin)) {
                             BuildApp.toast("پسورد با موفقیت ذخیره شد.");
-                            TinyData.getInstance().putString("password", password);
+                            PasswordStore.save(password);
                             TinyData.getInstance().putString(TYPE_PASS, PIN);
                             TinyData.getInstance().putBool("hasPassword", true);
                             setResult(2021, new Intent());
@@ -106,7 +107,7 @@ public class SelectPass extends BaseActivity {
             count = Integer.parseInt(TinyData.getInstance().getString("patternRowsCount", "3"));
             Spinner seekBar = findViewById(R.id.spinner);
             seekBar.setVisibility(View.VISIBLE);
-            seekBar.setAdapter(new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, new String[]{
+            seekBar.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, new String[]{
                     "الگوی 3x3",
                     "الگوی 4x4",
                     "الگوی 5x5"
@@ -147,7 +148,7 @@ public class SelectPass extends BaseActivity {
                         password = str;
                     } else if(password.equals(str)){
                         BuildApp.toast("پسورد با موفقیت ذخیره شد");
-                        TinyData.getInstance().putString("password", password);
+                        PasswordStore.save(password);
                         TinyData.getInstance().putString(TYPE_PASS, CUSTOM);
                         TinyData.getInstance().putBool("hasPassword", true);
                         setResult(2021, new Intent());
@@ -194,7 +195,7 @@ public class SelectPass extends BaseActivity {
                     if (password.equals(pass.toString())) {
                         TinyData.getInstance().putString("patternRowsCount", "" + count);
                         BuildApp.toast("الگو با موفقیت ذخیره شد");
-                        TinyData.getInstance().putString("password", password);
+                        PasswordStore.save(password);
                         TinyData.getInstance().putString(TYPE_PASS, PATTERN);
                         TinyData.getInstance().putBool("hasPassword", true);
                         setResult(2021, new Intent());

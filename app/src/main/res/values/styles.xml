@@ -3,12 +3,14 @@
     <style name="AppTheme" parent="Theme.Material3.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="materialButtonStyle">@style/LockApp.MaterialButton</item>
         <item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="android:colorAccent">@color/colorAccent</item>
         <item name="android:colorEdgeEffect">@color/colorEdgeEffect</item>
         <item name="android:soundEffectsEnabled">false</item>
         <item name="android:colorControlHighlight">#1A000000</item>
-        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+        <item name="android:statusBarColor">@color/colorPrimary</item>
+        <item name="android:windowLightStatusBar">false</item>
         <item name="android:navigationBarColor">@color/white</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
         <item name="android:dialogTheme">@style/dialogTheme</item>
@@ -26,9 +28,17 @@
     </style>
 
     <style name="dialogTheme" parent="Theme.Material3.Light.Dialog">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="materialButtonStyle">@style/LockApp.MaterialButton</item>
         <item name="android:colorPrimary">@color/colorPrimary</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowAnimationStyle">@style/dialogAnimation</item>
+    </style>
+
+    <style name="LockApp.MaterialButton" parent="Widget.Material3.Button">
+        <item name="backgroundTint">@color/colorPrimary</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="rippleColor">#3328B66D</item>
     </style>
 
     <style name="dialogAnimation">
@@ -79,6 +89,8 @@
     </declare-styleable>
 
     <style name="BottomSheetDialogTheme" parent="@style/Theme.Material3.Light.BottomSheetDialog">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="materialButtonStyle">@style/LockApp.MaterialButton</item>
         <item name="android:windowBackground">#33000000</item>
         <item name="android:navigationBarColor">@color/white</item>
     </style>

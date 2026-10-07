@@ -155,11 +155,11 @@ public class Gallery extends BaseActivity {
                 });
             } else {
                 holder.itemView.setBackgroundColor(0);
-                holder.back_image.setImageResource(R.drawable.fingerprint_dialog_error);
+                holder.back_image.setImageResource(android.R.drawable.ic_dialog_alert);
                 holder.imageView.setOnClickListener(null);
                 holder.imageView.setFocusable(false);
                 holder.imageView.setClickable(false);
-                holder.imageView.setImageDrawable(getResources().getDrawable(R.drawable.fingerprint_dialog_error));
+                holder.imageView.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_dialog_alert));
             }
 
             if (onClick != 0 && position == onClick) {

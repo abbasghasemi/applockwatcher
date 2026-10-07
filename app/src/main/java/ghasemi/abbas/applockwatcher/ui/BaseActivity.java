@@ -1,11 +1,14 @@
 package ghasemi.abbas.applockwatcher.ui;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import ghasemi.abbas.applockwatcher.builder.FileLog;
@@ -19,6 +22,9 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -53,6 +59,28 @@ public class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.base_layout);
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
+        int statusColor = androidx.core.content.ContextCompat.getColor(this, R.color.colorPrimary);
+        if (Build.VERSION.SDK_INT < 35) getWindow().setStatusBarColor(statusColor);
+        WindowCompat.getInsetsController(getWindow(), getWindow().getDecorView())
+                .setAppearanceLightStatusBars(false);
+        FrameLayout windowContent = findViewById(android.R.id.content);
+        View statusBarBackground = new View(this);
+        statusBarBackground.setBackgroundColor(statusColor);
+        windowContent.addView(statusBarBackground,
+                new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, Gravity.TOP));
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.root_frag), (view, insets) -> {
+            androidx.core.graphics.Insets bars = insets.getInsets(
+                    WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout());
+            view.setPadding(bars.left, bars.top, bars.right, bars.bottom);
+            int statusHeight = insets.getInsets(WindowInsetsCompat.Type.statusBars()).top;
+            if (statusBarBackground.getLayoutParams().height != statusHeight) {
+                ViewGroup.LayoutParams params = statusBarBackground.getLayoutParams();
+                params.height = statusHeight;
+                statusBarBackground.setLayoutParams(params);
+            }
+            return insets;
+        });
 
         root = findViewById(R.id.root);
         actionBar = findViewById(R.id.actionBar);

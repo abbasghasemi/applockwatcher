@@ -1,31 +1,51 @@
 apply plugin: 'com.android.application'
 
-android {
+def signingPassFile = file("${rootDir}/passwd")
+def releaseStorePassword = findProperty('APPLOCK_STORE_PASSWORD') ?: System.getenv('APPLOCK_STORE_PASSWORD') ?:
+        (signingPassFile.exists() ? signingPassFile.text.trim() : null)
+def releaseKeyPassword = findProperty('APPLOCK_KEY_PASSWORD') ?: System.getenv('APPLOCK_KEY_PASSWORD') ?: releaseStorePassword
 
-    compileSdkVersion 34
-    buildToolsVersion '33.0.0'
+android {
+    namespace 'ghasemi.abbas.applockwatcher'
+    compileSdkVersion 37
 
     defaultConfig {
         applicationId "ghasemi.abbas.applockwatcher"
-        minSdkVersion 21
-        targetSdkVersion 34
-        versionCode 53
-        versionName "5.2"
+        minSdkVersion 23
+        targetSdkVersion 37
+        versionCode 62
+        versionName "6.2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    flavorDimensions 'market'
+    productFlavors {
+        cafebazaar { dimension 'market' }
+        myket { dimension 'market' }
+    }
+
+    buildFeatures {
+        buildConfig true
+    }
+
+    signingConfigs {
+        release {
+            if (releaseStorePassword && file("${rootDir}/key.jks").exists()) {
+                storeFile file("${rootDir}/key.jks")
+                storePassword releaseStorePassword
+                keyAlias 'app lock watcher'
+                keyPassword releaseKeyPassword
+            }
+        }
     }
 
     buildTypes {
         release {
             minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            if (releaseStorePassword) signingConfig signingConfigs.release
         }
 
-        buildTypes.each {
-            it.buildConfigField 'int', 'KEY_MARKET', '1'
-            it.buildConfigField 'String', 'FLAVOR', '"cafebazaar"'
-//            it.buildConfigField 'int', 'KEY_MARKET', '2'
-//            it.buildConfigField 'String', 'FLAVOR', '"myket"'
-        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -42,18 +62,17 @@ repositories {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.3.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.7.0'
     implementation 'androidx.biometric:biometric:1.1.0'
-    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.appcompat:appcompat:1.8.0'
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation "com.github.farasource:material-button:1.1.1"
     implementation "com.github.farasource:waiting-bar:0.1-beta01"
-    implementation 'com.google.android.material:material:1.9.0'
-    implementation 'androidx.recyclerview:recyclerview:1.3.1'
-    implementation 'com.github.bumptech.glide:glide:4.16.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0'
-    implementation 'io.reactivex.rxjava2:rxjava:2.1.9'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
-    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    implementation 'com.google.android.material:material:1.14.0'
+    implementation 'androidx.recyclerview:recyclerview:1.4.0'
+    implementation 'com.github.bumptech.glide:glide:5.0.7'
+    annotationProcessor 'com.github.bumptech.glide:compiler:5.0.7'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.21'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.2.0'
 }

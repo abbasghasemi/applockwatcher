@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="قفل برنامه ها نسخه 5.2"
+            android:text="@string/app_name"
             android:textSize="13sp"
             app:bold="true"
             app:color="#000" />

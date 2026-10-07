@@ -5,11 +5,14 @@ ext {
 buildscript {
     
     repositories {
+        maven {
+            url = uri("https://maven.myket.ir")
+        }
         google()
-        jcenter()
+        mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.4.2'
+        classpath 'com.android.tools.build:gradle:9.2.1'
         
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -19,8 +22,12 @@ buildscript {
 
 allprojects {
     repositories {
+        maven {
+            url = uri("https://maven.myket.ir")
+        }
         google()
-        jcenter()
+        mavenCentral()
+        maven { url = uri('https://jitpack.io') }
     }
 }
 

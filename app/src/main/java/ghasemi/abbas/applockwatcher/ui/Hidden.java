@@ -182,8 +182,9 @@ public class Hidden extends BaseActivity implements OnBackPressedFragment {
     public void onBackPressedFragment(int pos) {
         popFragment();
         if (pos != -1) {
-            if (files.get(pos).selected) {
-                FilesCenter.showFile(files.get(pos).mFile);
+            if (files.get(pos).selected && !FilesCenter.showFile(files.get(pos).mFile)) {
+                BuildApp.toast(getString(R.string.file_unlock_failed));
+                return;
             }
             files.remove(pos);
             fileAdapter.notifyItemRemoved(pos);
@@ -273,19 +274,26 @@ public class Hidden extends BaseActivity implements OnBackPressedFragment {
                     mSwitch.setVisibility(View.VISIBLE);
                     mSwitch.setLock(fileParser.selected);
                     itemView.setOnClickListener(v -> {
-                        mSwitch.setLock(!mSwitch.isLock(), true);
-                        fileParser.selected = mSwitch.isLock();
-                        if (mSwitch.isLock()) {
+                        boolean lock = !fileParser.selected;
+                        if (lock) {
                             String[] n = fileParser.mFile.getName().split("\\.");
                             String type = FilesCenter.getTypeFile(n[n.length - 1]);
-                            FilesCenter.hiddenFile(fileParser.mFile, type);
+                            if (!FilesCenter.hiddenFile(fileParser.mFile, type)) {
+                                BuildApp.toast(getString(R.string.file_lock_failed));
+                                return;
+                            }
                             if (TinyData.getInstance().getString("backgroundImagePath").equals(fileParser.mFile.getPath())) {
                                 TinyData.getInstance().putString("backgroundImagePath", "");
                                 TinyData.getInstance().putLong("position_image_uri", 0);
                             }
                         } else {
-                            FilesCenter.showFile(fileParser.mFile);
+                            if (!FilesCenter.showFile(fileParser.mFile)) {
+                                BuildApp.toast(getString(R.string.file_unlock_failed));
+                                return;
+                            }
                         }
+                        fileParser.selected = lock;
+                        mSwitch.setLock(lock, true);
                     });
 
                     String[] n = fileParser.mFile.getName().split("\\.");

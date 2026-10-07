@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/privacyRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="28dp">
+
+        <ghasemi.abbas.applockwatcher.components.TextView
+            android:id="@+id/privacyIntro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/privacy_intro_bg"
+            android:gravity="start"
+            android:padding="16dp"
+            android:text="@string/privacy_intro"
+            android:textSize="15sp"
+            app:color="#234B35" />
+
+        <ghasemi.abbas.applockwatcher.components.TextView
+            android:id="@+id/privacyLocalTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="start"
+            android:text="@string/privacy_local_title"
+            android:textSize="17sp"
+            app:bold="true"
+            app:color="@color/colorPrimaryDark" />
+
+        <ghasemi.abbas.applockwatcher.components.TextView
+            android:id="@+id/privacyLocalBody"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="start"
+            android:lineSpacingExtra="5dp"
+            android:text="@string/privacy_local_body"
+            android:textSize="14sp"
+            app:color="#414141" />
+
+        <ghasemi.abbas.applockwatcher.components.TextView
+            android:id="@+id/privacyPermissionsTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="start"
+            android:text="@string/privacy_permissions_title"
+            android:textSize="17sp"
+            app:bold="true"
+            app:color="@color/colorPrimaryDark" />
+
+        <ghasemi.abbas.applockwatcher.components.TextView
+            android:id="@+id/privacyPermissionsBody"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="start"
+            android:lineSpacingExtra="5dp"
+            android:text="@string/privacy_permissions_body"
+            android:textSize="14sp"
+            app:color="#414141" />
+
+        <ghasemi.abbas.applockwatcher.components.TextView
+            android:id="@+id/privacyLauncherTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="start"
+            android:text="@string/privacy_launcher_title"
+            android:textSize="17sp"
+            app:bold="true"
+            app:color="@color/colorPrimaryDark" />
+
+        <ghasemi.abbas.applockwatcher.components.TextView
+            android:id="@+id/privacyLauncherBody"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="start"
+            android:lineSpacingExtra="5dp"
+            android:text="@string/privacy_launcher_body"
+            android:textSize="14sp"
+            app:color="#414141" />
+
+        <ghasemi.abbas.applockwatcher.components.TextView
+            android:id="@+id/privacyNetworkTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="start"
+            android:text="@string/privacy_network_title"
+            android:textSize="17sp"
+            app:bold="true"
+            app:color="@color/colorPrimaryDark" />
+
+        <ghasemi.abbas.applockwatcher.components.TextView
+            android:id="@+id/privacyNetworkBody"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="start"
+            android:lineSpacingExtra="5dp"
+            android:text="@string/privacy_network_body"
+            android:textSize="14sp"
+            app:color="#414141" />
+
+        <ghasemi.abbas.applockwatcher.components.TextView
+            android:id="@+id/privacyControlTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="start"
+            android:text="@string/privacy_control_title"
+            android:textSize="17sp"
+            app:bold="true"
+            app:color="@color/colorPrimaryDark" />
+
+        <ghasemi.abbas.applockwatcher.components.TextView
+            android:id="@+id/privacyControlBody"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="start"
+            android:lineSpacingExtra="5dp"
+            android:text="@string/privacy_control_body"
+            android:textSize="14sp"
+            app:color="#414141" />
+    </LinearLayout>
+</ScrollView>

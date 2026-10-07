@@ -4,8 +4,8 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 
-import ghasemi.abbas.applockwatcher.builder.LauncherIconController;
 import ghasemi.abbas.applockwatcher.service.OnOffScreen;
+import ghasemi.abbas.applockwatcher.builder.LauncherIconController;
 
 
 public class ApplicationLoader extends Application {
@@ -20,7 +20,6 @@ public class ApplicationLoader extends Application {
     public void onCreate() {
         super.onCreate();
         context = getApplicationContext();
-
         LauncherIconController.tryFixLauncherIconIfNeeded();
 
         if (screen == null) {

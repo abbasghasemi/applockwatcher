@@ -10,3 +10,6 @@
 /.idea
 /captures
 .externalNativeBuild
+
+*.apk
+*.aab

@@ -10,7 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 
-import com.farasource.component.button.MaterialButton;
+import com.google.android.material.button.MaterialButton;
 
 import androidx.appcompat.app.AlertDialog;
 import ghasemi.abbas.applockwatcher.ApplicationLoader;

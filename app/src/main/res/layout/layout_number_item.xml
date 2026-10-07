@@ -7,7 +7,7 @@
     android:clipToPadding="false"
     android:orientation="vertical">
 
-    <com.farasource.component.button.MaterialButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:minHeight="64dp"
@@ -16,9 +16,8 @@
         android:ellipsize="end"
         android:singleLine="true"
         android:maxLines="1"
-        app:scale="0.8"
-        app:useScale="true"
-        android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackgroundBorderless"/>
+        app:backgroundTint="@android:color/transparent"
+        app:rippleColor="#3328B66D"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

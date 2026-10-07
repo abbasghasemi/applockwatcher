@@ -1,6 +1,7 @@
 package ghasemi.abbas.applockwatcher.ui;
 
 import android.Manifest;
+import android.content.ActivityNotFoundException;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -24,16 +25,15 @@ import java.util.Map;
 import java.util.Random;
 
 import ghasemi.abbas.applockwatcher.R;
+import ghasemi.abbas.applockwatcher.BuildConfig;
 import ghasemi.abbas.applockwatcher.builder.AppStatus;
 import ghasemi.abbas.applockwatcher.builder.BuildApp;
 import ghasemi.abbas.applockwatcher.builder.FilesCenter;
-import ghasemi.abbas.applockwatcher.builder.LauncherIconController;
 import ghasemi.abbas.applockwatcher.builder.TinyData;
 import ghasemi.abbas.applockwatcher.components.Permission;
 import ghasemi.abbas.applockwatcher.components.Switch;
 import ghasemi.abbas.applockwatcher.components.TextView;
-import io.reactivex.Completable;
-import io.reactivex.CompletableObserver;
+import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
@@ -42,6 +42,7 @@ public class MainActivity extends BaseActivity {
 
     private Switch statusSwitch;
     private Disposable disposable;
+    private boolean showAccessibilityGuideAfterAppInfo;
     private final ActivityResultLauncher<Intent> launcher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
@@ -88,6 +89,12 @@ public class MainActivity extends BaseActivity {
         setTitle("قفل برنامه ها");
         hideBackBtn();
         setLayout(R.layout.loader);
+        LinearLayout content = findViewById(R.id.root);
+        content.getChildAt(content.getChildCount() - 1).setLayoutParams(
+                new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1f));
+        setView(new RecommendedAppsView(this));
+        ((TextView) findViewById(R.id.text)).setText(getString(R.string.app_name)
+                + " " + BuildConfig.VERSION_NAME);
 
         LinearLayout status = findViewById(R.id.status);
         statusSwitch = findViewById(R.id.statusSwitch);
@@ -110,7 +117,6 @@ public class MainActivity extends BaseActivity {
 
         CardView file = findViewById(R.id.file);
         file.setOnLongClickListener(v -> {
-            if (TinyData.getInstance().getBool("hiddenFilesFound")) return false;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 if (!Environment.isExternalStorageManager()) {
                     new Permission(MainActivity.this, v12 -> {
@@ -120,7 +126,8 @@ public class MainActivity extends BaseActivity {
                         Uri uri = Uri.fromParts("package", getPackageName(), null);
                         intent.setData(uri);
                         startActivity(intent);
-                    }, "مجوز file access", "برنامه برای خدمات قفل فایل ها به مجوز 'manage file access' نیاز دارد.", R.drawable.ic_round_storage_24);
+                    }, getString(R.string.file_access_permission_title),
+                            getString(R.string.file_access_permission_guide), R.drawable.ic_round_storage_24);
                     return true;
                 }
             } else if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -132,27 +139,13 @@ public class MainActivity extends BaseActivity {
                 }, "مجوز read/write storage", "برنامه برای خدمات قفل فایل ها به مجوز 'read/write external storage' نیاز دارد.", R.drawable.ic_round_storage_24);
                 return true;
             }
-            BuildApp.toast("درحال بازگردانی فایل های قفل شده...");
-            Completable.create(emitter -> {
-                FilesCenter.findFileHidden(FilesCenter.root);
-                if (!emitter.isDisposed()) emitter.onComplete();
-            }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new CompletableObserver() {
-                @Override
-                public void onSubscribe(Disposable d) {
-                    disposable = d;
-                }
-
-                @Override
-                public void onComplete() {
-                    TinyData.getInstance().putBool("hiddenFilesFound", true);
-                    BuildApp.toast("بازگردانی با موفقیت انجام شد.");
-                }
-
-                @Override
-                public void onError(Throwable e) {
-
-                }
-            });
+            BuildApp.toast(getString(R.string.file_recovery_start));
+            disposable = Single.fromCallable(() -> FilesCenter.findFileHidden(FilesCenter.root))
+                    .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(success -> {
+                        if (success) TinyData.getInstance().putBool("hiddenFilesFound", true);
+                        BuildApp.toast(getString(success ? R.string.file_recovery_done : R.string.file_recovery_failed));
+                    }, error -> BuildApp.toast(getString(R.string.file_recovery_failed)));
             return true;
         });
         file.setOnClickListener(v -> startActivityHidden("file", R.string.hidden_file_list, R.string.device));
@@ -176,7 +169,8 @@ public class MainActivity extends BaseActivity {
                     Uri uri = Uri.fromParts("package", getPackageName(), null);
                     intent.setData(uri);
                     startActivity(intent);
-                }, "مجوز file access", "برنامه برای خدمات قفل فایل ها به مجوز 'manage file access' نیاز دارد.", R.drawable.ic_round_storage_24);
+                }, getString(R.string.file_access_permission_title),
+                        getString(R.string.file_access_permission_guide), R.drawable.ic_round_storage_24);
                 return;
             }
         } else if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -225,14 +219,27 @@ public class MainActivity extends BaseActivity {
                 }
             }
         });
+        if (showAccessibilityGuideAfterAppInfo) {
+            showAccessibilityGuideAfterAppInfo = false;
+            if (!BuildApp.isAccessibilityServiceEnabled(this)) permission();
+        }
     }
 
     void permission() {
         new Permission(this, view -> {
             Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
-        });
+        }, view -> {
+            showAccessibilityGuideAfterAppInfo = true;
+            Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                    Uri.parse("package:" + getPackageName()));
+            try {
+                startActivity(intent);
+            } catch (ActivityNotFoundException e) {
+                startActivity(new Intent(Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS));
+            }
+        }, getString(R.string.accessibility_setup_title),
+                getString(R.string.accessibility_setup_guide), R.drawable.ic_round_app_registration_24);
     }
 
     private void startCheck() {

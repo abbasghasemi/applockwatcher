@@ -24,7 +24,8 @@ public class LockWidgetProvider extends AppWidgetProvider {
             intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
             intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, new int[]{widgetId});
             intent.putExtra("First_Second", widgetId);
-            remoteViews.setOnClickPendingIntent(R.id.lock, PendingIntent.getBroadcast(context, widgetId, intent, PendingIntent.FLAG_UPDATE_CURRENT));
+            remoteViews.setOnClickPendingIntent(R.id.lock, PendingIntent.getBroadcast(context, widgetId, intent,
+                    PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE));
             appWidgetManager.updateAppWidget(widgetId, remoteViews);
         }
     }

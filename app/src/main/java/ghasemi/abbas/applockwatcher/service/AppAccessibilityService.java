@@ -21,8 +21,12 @@ public class AppAccessibilityService extends AccessibilityService {
         }
         if (!TinyData.getInstance().getBool("appLockIsActive")) return;
         CharSequence packageId = event.getPackageName();
-        FileLog.print(packageId);
-        if (packageId != null && !packageId.equals(getPackageName())) {
+        if (packageId == null) return;
+        if (packageId.equals(getPackageName())) {
+            TinyData.getInstance().putString("lastPkgOnline", getPackageName());
+            return;
+        }
+        if (!packageId.equals(getPackageName())) {
             String lastPkgOnline = TinyData.getInstance().getString("lastPkgOnline");
             if (!packageId.toString().equals(lastPkgOnline)) {
                 TinyData.getInstance().putString("lastPkgOnline", packageId.toString());

@@ -29,7 +29,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.farasource.component.button.MaterialButton;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -46,6 +46,7 @@ import androidx.core.content.ContextCompat;
 import ghasemi.abbas.applockwatcher.ApplicationLoader;
 import ghasemi.abbas.applockwatcher.R;
 import ghasemi.abbas.applockwatcher.builder.AppStatus;
+import ghasemi.abbas.applockwatcher.builder.PasswordStore;
 import ghasemi.abbas.applockwatcher.builder.BuildApp;
 import ghasemi.abbas.applockwatcher.builder.DateHelper;
 import ghasemi.abbas.applockwatcher.builder.FileLog;
@@ -122,9 +123,12 @@ public class Launcher extends AppCompatActivity {
                     FileLog.e(e);
                 }
             } else {
-                boolean isIconDef = LauncherIconController.isEnabled(LauncherIconController.LauncherIcon.DEFAULT);
-                icon.setImageResource(isIconDef ? LauncherIconController.LauncherIcon.DEFAULT.icon : LauncherIconController.LauncherIcon.CALCULATOR.icon);
-                name.setText(isIconDef ? LauncherIconController.LauncherIcon.DEFAULT.title : LauncherIconController.LauncherIcon.CALCULATOR.title);
+                LauncherIconController.LauncherIcon selectedIcon =
+                        LauncherIconController.isEnabled(LauncherIconController.LauncherIcon.CALCULATOR)
+                                ? LauncherIconController.LauncherIcon.CALCULATOR
+                                : LauncherIconController.LauncherIcon.DEFAULT;
+                icon.setImageResource(selectedIcon.icon);
+                name.setText(selectedIcon.title);
             }
             LinearLayout linearLayout = findViewById(R.id.pass);
 
@@ -148,7 +152,7 @@ public class Launcher extends AppCompatActivity {
                         for (PatternLockView.Dot dot : pattern) {
                             pass.append(dot.getId()).append(dot.getColumn());
                         }
-                        if (pass.toString().equals(TinyData.getInstance().getString("password"))) {
+                        if (PasswordStore.matches(pass.toString())) {
                             BuildApp.addHistory(getPackageId() + "==3");
                             go();
                         } else {
@@ -185,7 +189,7 @@ public class Launcher extends AppCompatActivity {
                 pinLockView.setPinLockListener(new PinLockListener() {
                     @Override
                     public void onComplete(String pin) {
-                        if (!pin.equals(TinyData.getInstance().getString("password"))) {
+                        if (!PasswordStore.matches(pin)) {
                             startVibrator();
                             pinLockView.resetPinLockView();
                         }
@@ -198,7 +202,7 @@ public class Launcher extends AppCompatActivity {
 
                     @Override
                     public void onPinChange(int pinLength, String intermediatePin) {
-                        if (intermediatePin.equals(TinyData.getInstance().getString("password"))) {
+                        if (PasswordStore.matches(intermediatePin)) {
                             BuildApp.addHistory(getPackageId() + "==3");
                             go();
                         }
@@ -233,7 +237,7 @@ public class Launcher extends AppCompatActivity {
 
                     @Override
                     public void onTextChanged(CharSequence s, int start, int before, int count) {
-                        if (s.toString().equals(TinyData.getInstance().getString("password"))) {
+                        if (PasswordStore.matches(s.toString())) {
                             BuildApp.addHistory(getPackageId() + "==3");
                             go();
                         } else if (s.length() >= 30) {
@@ -346,7 +350,7 @@ public class Launcher extends AppCompatActivity {
     }
 
     private void startVibrator() {
-        frontCamera.takePicture();
+        if (frontCamera != null) frontCamera.takePicture();
         BuildApp.addHistory(getPackageId() + "==2");
         if (TinyData.getInstance().getBool("useVibrator", true)) {
             if (vibrator == null) {
@@ -359,6 +363,7 @@ public class Launcher extends AppCompatActivity {
     void go() {
         if (forOtherApps) {
             AppStatus.open().update(getPackageId(), TinyData.getInstance().getBool("lockedApplicationAfterExit"));
+            TinyData.getInstance().putString("lastPkgOnline", getPackageId());
             finishAffinity();
         } else {
             if (getIntent().getBooleanExtra("FLAG_ACTIVITY_LOADER", true)) {
@@ -386,8 +391,9 @@ public class Launcher extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        if (frontCamera == null) {
-            frontCamera = new FrontCamera((SurfaceView) findViewById(R.id.surfaceView), getPackageId());
+        SurfaceView preview = findViewById(R.id.surfaceView);
+        if (frontCamera == null && preview != null) {
+            frontCamera = new FrontCamera(preview, getPackageId());
         }
         isActive = true;
         super.onResume();
@@ -395,6 +401,7 @@ public class Launcher extends AppCompatActivity {
 
     @Override
     protected void onPause() {
+        if (frontCamera != null) frontCamera.stopCamera();
         if (forOtherApps) {
             super.onPause();
             finish();
@@ -407,7 +414,7 @@ public class Launcher extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         if (frontCamera != null) {
-            frontCamera.stopCamera();
+            frontCamera.release();
         }
         if (biometricPrompt != null) {
             biometricPrompt.cancelAuthentication();

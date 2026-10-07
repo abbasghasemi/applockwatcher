@@ -31,7 +31,7 @@
         android:layout_margin="20dp"
         android:orientation="horizontal">
 
-        <com.farasource.component.button.MaterialButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/ok"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
             android:text="حذف شود"
             app:backgroundTint="#F44336" />
 
-        <com.farasource.component.button.MaterialButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/close"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

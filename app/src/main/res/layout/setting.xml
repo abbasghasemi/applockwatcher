@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/settingContent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
@@ -14,6 +15,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="64dp"
             android:orientation="vertical">
 
             <ghasemi.abbas.applockwatcher.components.TextView
@@ -79,26 +81,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:background="?selectableItemBackground">
-
                 <ghasemi.abbas.applockwatcher.components.Switch
                     android:id="@+id/changeIconSwitch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp" />
-
                 <View
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
-
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="28dp"
                     android:layout_height="28dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginHorizontal="10dp"
                     android:src="@mipmap/ic_calculator" />
-
                 <ghasemi.abbas.applockwatcher.components.TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -106,25 +104,21 @@
                     android:text="⇆"
                     app:color="#202020"
                     android:textSize="20dp" />
-
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginHorizontal="10dp"
                     android:src="@mipmap/ic_launcher" />
-
                 <ghasemi.abbas.applockwatcher.components.TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginRight="15dp"
                     android:textSize="14sp"
-                    android:text="پنهان سازی آیکن"
+                    android:text="@string/change_launcher_icon"
                     app:color="#000" />
-
             </LinearLayout>
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -501,21 +495,20 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
+                android:layout_marginHorizontal="15dp"
                 android:background="@color/colorDivider" />
 
             <ghasemi.abbas.applockwatcher.components.TextView
-                android:id="@+id/otherAppa"
+                android:id="@+id/privacy"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
+                android:background="?selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
-                android:textSize="14sp"
-                android:foreground="?selectableItemBackground"
-                android:gravity="right|center"
+                android:gravity="right|center_vertical"
                 android:paddingRight="15dp"
-                android:text="سایر اپلیکیشن های ما"
+                android:text="@string/privacy_title"
+                android:textSize="14sp"
                 app:color="#000" />
         </LinearLayout>
     </ScrollView>

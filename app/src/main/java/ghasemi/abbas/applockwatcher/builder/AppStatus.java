@@ -136,7 +136,7 @@ public class AppStatus extends SQLiteOpenHelper {
                         list.put("icon", packageManager.getApplicationIcon(packageId));
                     } catch (PackageManager.NameNotFoundException e) {
                         list.put("name", packageId);
-                        list.put("icon", ApplicationLoader.context.getResources().getDrawable(R.drawable.fingerprint_dialog_error));
+                        list.put("icon", ApplicationLoader.context.getResources().getDrawable(android.R.drawable.ic_dialog_alert));
                     }
                     list.put("type", String.valueOf(cursor.getInt(2)));
                     list.put("date", cursor.getString(3));
@@ -156,13 +156,14 @@ public class AppStatus extends SQLiteOpenHelper {
         sqLiteDatabase.close();
     }
 
-    public void lookFile(String path, String type) {
+    public boolean lookFile(String path, String type) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("filePath", path);
         values.put("fileType", type);
-        db.insert("files", null, values);
+        boolean saved = db.insert("files", null, values) != -1;
         db.close();
+        return saved;
     }
 
     public ArrayList<FileParser> file(String type) {
@@ -225,7 +226,7 @@ public class AppStatus extends SQLiteOpenHelper {
                         list.put("icon", packageManager.getApplicationIcon(packageId));
                     } catch (PackageManager.NameNotFoundException e) {
                         list.put("name", packageId);
-                        list.put("icon", ApplicationLoader.context.getResources().getDrawable(R.drawable.fingerprint_dialog_error));
+                        list.put("icon", ApplicationLoader.context.getResources().getDrawable(android.R.drawable.ic_dialog_alert));
                     }
                     list.put("img", cursor.getString(2));
                     list.put("date", cursor.getString(3));

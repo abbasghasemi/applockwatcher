@@ -79,7 +79,7 @@
             android:layout_marginBottom="20dp"
             android:orientation="horizontal">
 
-            <com.farasource.component.button.MaterialButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/close"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -94,7 +94,7 @@
                 app:strokeColor="@color/colorAccent"
                 app:strokeWidth="1dp" />
 
-            <com.farasource.component.button.MaterialButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/save"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

@@ -1,7 +1,6 @@
 package ghasemi.abbas.applockwatcher.ui;
 
 import android.Manifest;
-import android.app.KeyguardManager;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -11,7 +10,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.hardware.fingerprint.FingerprintManager;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
@@ -21,9 +19,10 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.CompoundButton;
 import android.widget.RadioButton;
 
-import com.farasource.component.button.MaterialButton;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.io.File;
@@ -33,6 +32,7 @@ import java.io.IOException;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.core.content.ContextCompat;
+import androidx.biometric.BiometricManager;
 import androidx.core.content.FileProvider;
 
 import ghasemi.abbas.applockwatcher.BuildConfig;
@@ -117,6 +117,8 @@ public class Setting extends BaseActivity {
         dp = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
         cn = new ComponentName(this, LoginReceiver.class);
         setLayout(R.layout.setting);
+        findViewById(R.id.settingContent).setLayoutParams(new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, 0, 1f));
         setTitle(BuildApp.getString(R.string.settings));
         findViewById(R.id.changePass).setOnClickListener(view -> MainActivity.showDialogPassword(Setting.this, launcher, true));
 
@@ -178,15 +180,8 @@ public class Setting extends BaseActivity {
             TinyData.getInstance().putBool("hasUserCommented", huc);
         });
 
-        findViewById(R.id.otherAppa).setOnClickListener(view -> {
-            try {
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(BuildConfig.FLAVOR.equals("cafebazaar") ? "https://cafebazaar.ir/developer/654337025886" : "https://myket.ir/developer/dev-74572"));
-                startActivity(intent);
-            } catch (Exception e) {
-                //
-            }
-        });
+        findViewById(R.id.privacy).setOnClickListener(view ->
+                startActivity(new Intent(Setting.this, Privacy.class)));
 
         findViewById(R.id.wallpaper).setOnClickListener(view -> {
             final BottomSheetDialog dialog = new BottomSheetDialog(Setting.this, R.style.BottomSheetDialogTheme);
@@ -256,7 +251,19 @@ public class Setting extends BaseActivity {
         final Switch changeIconSwitch = findViewById(R.id.changeIconSwitch);
         changeIconSwitch.setChecked(LauncherIconController.isEnabled(LauncherIconController.LauncherIcon.CALCULATOR));
         changeIcon.setOnClickListener(v -> changeIconSwitch.setChecked(!changeIconSwitch.isChecked()));
-        changeIconSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> LauncherIconController.setIcon(isChecked ? LauncherIconController.LauncherIcon.CALCULATOR : LauncherIconController.LauncherIcon.DEFAULT));
+        changeIconSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                try {
+                    LauncherIconController.setIcon(isChecked ? LauncherIconController.LauncherIcon.CALCULATOR
+                            : LauncherIconController.LauncherIcon.DEFAULT);
+                } catch (RuntimeException e) {
+                    changeIconSwitch.setOnCheckedChangeListener(null);
+                    changeIconSwitch.setChecked(LauncherIconController.isEnabled(LauncherIconController.LauncherIcon.CALCULATOR));
+                    changeIconSwitch.setOnCheckedChangeListener(this);
+                    BuildApp.toast(getString(R.string.change_launcher_icon_error));
+                }
+            }
+        });
 
         LinearLayout vibrator = findViewById(R.id.vibrator);
         final Switch vibratorSwitch = findViewById(R.id.vibratorSwitch);
@@ -270,18 +277,15 @@ public class Setting extends BaseActivity {
         visible.setOnClickListener(v -> visibleSwitch.setChecked(!visibleSwitch.isChecked()));
         visibleSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> TinyData.getInstance().putBool("canSeenPattern", isChecked));
 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-            FingerprintManager fingerprintManager = (FingerprintManager) getSystemService(FINGERPRINT_SERVICE);
-            KeyguardManager keyguardManager = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
-            if (fingerprintManager != null && fingerprintManager.isHardwareDetected() && fingerprintManager.hasEnrolledFingerprints() && keyguardManager != null && keyguardManager.isKeyguardSecure()) {
-                LinearLayout finger = findViewById(R.id.finger);
-                finger.setVisibility(View.VISIBLE);
-                findViewById(R.id.view).setVisibility(View.VISIBLE);
-                final Switch fingerSwitch = findViewById(R.id.fingerSwitch);
-                fingerSwitch.setChecked(TinyData.getInstance().getBool("userFingerprint", true));
-                finger.setOnClickListener(v -> fingerSwitch.setChecked(!fingerSwitch.isChecked()));
-                fingerSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> TinyData.getInstance().putBool("userFingerprint", isChecked));
-            }
+        if (BiometricManager.from(this).canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG)
+                == BiometricManager.BIOMETRIC_SUCCESS) {
+            LinearLayout finger = findViewById(R.id.finger);
+            finger.setVisibility(View.VISIBLE);
+            findViewById(R.id.view).setVisibility(View.VISIBLE);
+            final Switch fingerSwitch = findViewById(R.id.fingerSwitch);
+            fingerSwitch.setChecked(TinyData.getInstance().getBool("userFingerprint", true));
+            finger.setOnClickListener(v -> fingerSwitch.setChecked(!fingerSwitch.isChecked()));
+            fingerSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> TinyData.getInstance().putBool("userFingerprint", isChecked));
         }
 
         LinearLayout delete = findViewById(R.id.delete);

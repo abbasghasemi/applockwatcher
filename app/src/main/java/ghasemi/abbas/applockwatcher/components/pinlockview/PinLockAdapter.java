@@ -17,7 +17,7 @@ import android.widget.LinearLayout;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.farasource.component.button.MaterialButton;
+import com.google.android.material.button.MaterialButton;
 
 import ghasemi.abbas.applockwatcher.R;
 

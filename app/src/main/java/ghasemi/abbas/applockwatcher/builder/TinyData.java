@@ -27,6 +27,15 @@ public class TinyData {
         sharedPreferences.edit().putString(key, value).apply();
     }
 
+    public void putPasswordHash(String salt, String hash, int length) {
+        sharedPreferences.edit()
+                .putString("passwordSalt", salt)
+                .putString("passwordHash", hash)
+                .putString("passwordLength", String.valueOf(length))
+                .remove("password")
+                .apply();
+    }
+
     public String getString(String key) {
         return getString(key, "");
     }
